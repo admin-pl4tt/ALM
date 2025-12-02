@@ -20,7 +20,3 @@ jobs:
         with:
           name: packed-solution
           path: out/
-          
-git add .
-git commit -m "created pack-solution.yml"
-git push
