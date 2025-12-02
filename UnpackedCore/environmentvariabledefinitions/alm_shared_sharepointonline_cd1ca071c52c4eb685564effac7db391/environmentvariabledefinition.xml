@@ -1,0 +1,15 @@
+<environmentvariabledefinition schemaname="alm_shared_sharepointonline_cd1ca071c52c4eb685564effac7db391">
+  <apiid>/providers/microsoft.powerapps/apis/shared_sharepointonline</apiid>
+  <displayname default="test">
+    <label description="test" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.0</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <parameterkey>table</parameterkey>
+  <parentdefinitionid>
+    <schemaname>alm_shared_sharepointonline_ac846d8df120401f9bf15374dbeebab8</schemaname>
+  </parentdefinitionid>
+  <secretstore>0</secretstore>
+  <type>100000004</type>
+</environmentvariabledefinition>

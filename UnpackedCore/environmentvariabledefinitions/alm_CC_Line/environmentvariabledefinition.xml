@@ -1,0 +1,11 @@
+<environmentvariabledefinition schemaname="alm_CC_Line">
+  <defaultvalue>admin@pl4tt.onmicrosoft.com</defaultvalue>
+  <displayname default="CC_Line">
+    <label description="CC_Line" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.0</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

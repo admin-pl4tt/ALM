@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <EntityRelationship Name="business_unit_alm_test2" />
+  <EntityRelationship Name="business_unit_cre4a_test1" />
+  <EntityRelationship Name="lk_alm_test2_createdby" />
+  <EntityRelationship Name="lk_alm_test2_modifiedby" />
+  <EntityRelationship Name="lk_cre4a_test1_createdby" />
+  <EntityRelationship Name="lk_cre4a_test1_modifiedby" />
+  <EntityRelationship Name="owner_alm_test2" />
+  <EntityRelationship Name="owner_cre4a_test1" />
+  <EntityRelationship Name="team_alm_test2" />
+  <EntityRelationship Name="team_cre4a_test1" />
+  <EntityRelationship Name="user_alm_test2" />
+  <EntityRelationship Name="user_cre4a_test1" />
+</EntityRelationships>

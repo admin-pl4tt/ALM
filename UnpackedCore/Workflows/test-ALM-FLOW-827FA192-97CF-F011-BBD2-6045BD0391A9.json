@@ -1,0 +1,123 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline-1": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "alm_SharePoint"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      },
+      "shared_office365-1": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "alm_Outlook"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "undefined",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "Site_URL (alm_Site_URL)": {
+          "defaultValue": "https://pl4tt.sharepoint.com/sites/allcompany",
+          "type": "String",
+          "metadata": {
+            "schemaName": "alm_Site_URL",
+            "description": "Used for Site reference"
+          }
+        },
+        "List (alm_List)": {
+          "defaultValue": "1e721994-e9ba-4241-90c4-c701409981eb",
+          "type": "String",
+          "metadata": {
+            "schemaName": "alm_List"
+          }
+        },
+        "CC_Line (alm_CC_Line)": {
+          "defaultValue": "admin@pl4tt.onmicrosoft.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "alm_CC_Line"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Compose": {
+          "runAfter": {},
+          "type": "Compose",
+          "inputs": "alm"
+        },
+        "Get_items": {
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "dataset": "@parameters('Site_URL (alm_Site_URL)')",
+              "table": "@parameters('List (alm_List)')"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "operationId": "GetItems",
+              "connectionName": "shared_sharepointonline-1"
+            }
+          }
+        },
+        "Send_an_email_(V2)": {
+          "runAfter": {
+            "Get_items": [
+              "Succeeded"
+            ]
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "emailMessage/To": "admin@pl4tt.onmicrosoft.com",
+              "emailMessage/Subject": "test",
+              "emailMessage/Body": "<p class=\"editor-paragraph\">std</p>",
+              "emailMessage/Cc": "@parameters('CC_Line (alm_CC_Line)')",
+              "emailMessage/Importance": "Normal"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "operationId": "SendEmailV2",
+              "connectionName": "shared_office365-1"
+            }
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

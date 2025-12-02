@@ -1,0 +1,12 @@
+<environmentvariabledefinition schemaname="alm_shared_sharepointonline_ac846d8df120401f9bf15374dbeebab8">
+  <apiid>/providers/microsoft.powerapps/apis/shared_sharepointonline</apiid>
+  <displayname default="pl4tt - https://pl4tt.sharepoint.com/sites/pl4tt">
+    <label description="pl4tt - https://pl4tt.sharepoint.com/sites/pl4tt" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.0</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <parameterkey>dataset</parameterkey>
+  <secretstore>0</secretstore>
+  <type>100000004</type>
+</environmentvariabledefinition>
