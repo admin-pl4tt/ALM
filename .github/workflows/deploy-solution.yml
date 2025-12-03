@@ -1,8 +1,8 @@
-name: Deploy Contoso_University_Core
+name: Deploy ALM_Class_Core
 
 on:
   workflow_run:
-    workflows: ["Pack Contoso_University_Core"]
+    workflows: ["Pack ALM_Class_Core"]
     branches: [main]
     types:
       - completed
@@ -22,4 +22,4 @@ jobs:
           environment-url: <YOUR TRIAL ENVIRONMENT URL HERE>
           user-name: ${{ secrets.USERNAME }}
           password-secret: ${{ secrets.PASSWORD }}
-          solution-file: contoso_university_core_managed.zip
+          solution-file: ALM_Class_Core_managed.zip
