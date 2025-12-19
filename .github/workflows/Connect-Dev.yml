@@ -30,9 +30,9 @@ jobs:
         uses: microsoft/powerplatform-actions/export-solution@v1
         with:
           environment-url: https://org5bfd1956.crm.dynamics.com/
-          app-id: ${{ secrets.PP_APP_ID}}
-          client-secret: ${{secrets.PP_CLIENT_SECRET}}
-          tenant-id: ${{secrets.PP_TENANT_ID}}
+          app-id: ${{ secrets.PP_APP_ID }}
+          client-secret: ${{ secrets.PP_CLIENT_SECRET }}
+          tenant-id: ${{ secrets.PP_TENANT_ID }}
           solution-name: ALM1217
           solution-output-file: ALM1217.zip
           working-directory: out
@@ -51,9 +51,9 @@ jobs:
         uses: microsoft/powerplatform-actions/publish-solution@v1
         with:
           environment-url: https://org6d74c641.crm.dynamics.com/
-          app-id: ${{ secrets.PP_APP_ID}}
-          client-secret: ${{secrets.PP_CLIENT_SECRET}}
-          tenant-id: ${{secrets.PP_TENANT_ID}}
+          app-id: ${{ secrets.PP_APP_ID }}
+          client-secret: ${{ secrets.PP_CLIENT_SECRET }}
+          tenant-id: ${{ secrets.PP_TENANT_ID }}
 
       # Prepare and commit solution changes
       - name: Prepare solution changes for check-in into source control
