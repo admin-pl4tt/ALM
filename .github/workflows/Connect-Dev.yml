@@ -3,16 +3,23 @@ name: Pack ALM1217
 on:
   push:
     paths:
-        -contents/**
+      - contents/**
   workflow_dispatch:
-  
+
 jobs:
-  build: 
+  build:
     runs-on: windows-latest
+
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create output folder
+        run: mkdir out
+
       - name: Install Power Platform Tools
         uses: microsoft/powerplatform-actions/actions-install@v1
-      
+
       - name: Export Solution
         uses: microsoft/powerplatform-actions/export-solution@v1
         with:
@@ -22,25 +29,25 @@ jobs:
           solution-name: ALM1217
           solution-output-file: 'ALM1217.zip'
           working-directory: 'out'
-  
+
       - name: Unpack Solution
         uses: microsoft/powerplatform-actions/unpack-solution@v1
         with:
           solution-file: 'out/ALM1217.zip'
-          solution-folder: 'out/solutions/solution one'
+          solution-folder: 'out/solutions/solution-one'
           solution-type: 'Unmanaged'
           overwrite-files: true
-  
+
       - name: Publish Solution
         uses: microsoft/powerplatform-actions/publish-solution@v1
         with:
           environment-url: 'https://org6d74c641.crm.dynamics.com/'
           user-name: 'admin@pl4tt.onmicrosoft.com'
           password-secret: ${{ secrets.MYPASSWORD }}
-  
+
       - name: Prepare solution changes for check-in into source control
         uses: microsoft/powerplatform-actions/branch-solution@v1
         with:
-          solution-folder: 'out/solutions/solution one'
-          solution-target-folder: 'src/solutions/solution1'
+          solution-folder: 'out/solutions/solution-one'
+          solution-target-folder: 'src/solutions/solution-one'
           token: ${{ secrets.GITHUB_TOKEN }}
