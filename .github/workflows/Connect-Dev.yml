@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    environment: production
 
     steps:
       # REQUIRED: checkout repo so we can commit back
