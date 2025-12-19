@@ -11,43 +11,52 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      # REQUIRED: checkout repo so we can commit back
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Create working folders
       - name: Create output folder
-        run: mkdir out
+        run: |
+          mkdir out
+          mkdir src
 
+      # Install Power Platform tooling
       - name: Install Power Platform Tools
         uses: microsoft/powerplatform-actions/actions-install@v1
 
+      # Export solution from source environment
       - name: Export Solution
         uses: microsoft/powerplatform-actions/export-solution@v1
         with:
-          environment-url: 'https://org5bfd1956.crm.dynamics.com/'
-          user-name: 'admin@pl4tt.onmicrosoft.com'
+          environment-url: https://org5bfd1956.crm.dynamics.com/
+          user-name: admin@pl4tt.onmicrosoft.com
           password-secret: ${{ secrets.MYPASSWORD }}
           solution-name: ALM1217
-          solution-output-file: 'ALM1217.zip'
-          working-directory: 'out'
+          solution-output-file: ALM1217.zip
+          working-directory: out
 
+      # Unpack solution into source control format
       - name: Unpack Solution
         uses: microsoft/powerplatform-actions/unpack-solution@v1
         with:
-          solution-file: 'out/ALM1217.zip'
-          solution-folder: 'out/solutions/solution-one'
-          solution-type: 'Unmanaged'
+          solution-file: out/ALM1217.zip
+          solution-folder: out/solutions/solution-one
+          solution-type: Unmanaged
           overwrite-files: true
 
+      # OPTIONAL: publish to target environment
       - name: Publish Solution
         uses: microsoft/powerplatform-actions/publish-solution@v1
         with:
-          environment-url: 'https://org6d74c641.crm.dynamics.com/'
-          user-name: 'admin@pl4tt.onmicrosoft.com'
+          environment-url: https://org6d74c641.crm.dynamics.com/
+          user-name: admin@pl4tt.onmicrosoft.com
           password-secret: ${{ secrets.MYPASSWORD }}
 
+      # Prepare and commit solution changes
       - name: Prepare solution changes for check-in into source control
         uses: microsoft/powerplatform-actions/branch-solution@v1
         with:
-          solution-folder: 'out/solutions/solution-one'
-          solution-target-folder: 'src/solutions/solution-one'
+          solution-folder: out/solutions/solution-one
+          solution-target-folder: src/solutions/solution-one
           token: ${{ secrets.GITHUB_TOKEN }}
