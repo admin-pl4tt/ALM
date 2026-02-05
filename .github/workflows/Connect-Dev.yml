@@ -1,4 +1,4 @@
-name: Pack ALM1217
+name: Pack connect-dev
 
 on:
   push:
